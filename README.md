@@ -1,28 +1,26 @@
-# &lt;vcf-element&gt;
-
-**Note that this is a starter boilerplate for creating Polymer 3 based components.**
+# &lt;vcf-onboarding&gt;
 
 ## Installation
 
-Install `vcf-element`:
+Install `vcf-onboarding`:
 
 ```sh
-npm i @vaadin-component-factory/vcf-element --save
+npm i @vaadin-component-factory/vcf-onboarding --save
 ```
 
 Once installed, import it in your application:
 
 ```js
-import '@vaadin-component-factory/vcf-element/vcf-element.js';
+import '@vaadin-component-factory/vcf-onboarding/vcf-onboarding.js';
 ```
 
 ## Running demo
 
-1. Fork the `vcf-element` repository and clone it locally.
+1. Fork the `vcf-onboarding` repository and clone it locally.
 
 1. Make sure you have [npm](https://www.npmjs.com/) installed.
 
-1. When in the `vcf-element` directory, run `npm install` to install dependencies.
+1. When in the `vcf-onboarding` directory, run `npm install` to install dependencies.
 
 1. Run `npm start` to open the demo.
 

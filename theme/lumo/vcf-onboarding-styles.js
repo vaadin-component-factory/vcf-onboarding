@@ -1,6 +1,6 @@
 const theme = document.createElement('dom-module');
-theme.id = 'vcf-element-lumo';
-theme.setAttribute('theme-for', 'vcf-element');
+theme.id = 'vcf-onboarding-lumo';
+theme.setAttribute('theme-for', 'vcf-onboarding');
 theme.innerHTML = `
     <template>
       <style>
