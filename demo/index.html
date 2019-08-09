@@ -18,7 +18,51 @@
     <div class="vertical-section-container">
       <demo-snippet>
         <template>
-          <vcf-onboarding></vcf-onboarding>
+          <vcf-onboarding>
+            <!-- 
+              The following selectors are available for styling:
+              [part='step-container']: The element that wraps all the steps
+              [part='step']: The element that wraps the contents and the button of each step
+              [part='step-content']: The element that wraps the contents of each step
+              [part='step-button']: The button of each step
+              .active-step: The CSS class added to the current step the user is viewing
+             -->
+            <style onboarding-styles>
+              [part='step'] {
+                min-width: 300px;
+                width: 100%;
+                height: 70vh;
+                display: none;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                background-color: #fff;
+              }
+              [part='step-content'] {
+                text-transform: uppercase;
+              }
+              [part='step-button'] {
+                margin-top: 3em;
+              }
+              .active-step {
+                display: flex;
+              }
+            </style>
+            <!-- 
+              Add a style tag with 'onboading-styles' attribute and place your styles inside it.
+              Wrap the content of each step in an element with 'onboarding-step' attribute
+              and add the button text in 'button-text' attribute of the element.
+             -->
+            <div onboarding-step button-text="Next Step">
+              <h1>First Step</h1>
+            </div>
+            <div onboarding-step button-text="Next Step">
+              <h1>Second Step</h1>
+            </div>
+            <div onboarding-step button-text="Finish!">
+              <h1>Third Step</h1>
+            </div>
+          </vcf-onboarding>
         </template>
       </demo-snippet>
     </div>
