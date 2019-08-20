@@ -12,9 +12,12 @@ import '@vaadin/vaadin-button';
  * ----------------|----------------
  * `[part='step-container']` | The element that wraps all the steps
  * `[part='step']` | The element that wraps the contents and the button of each step
+ * `[part='step'].active-step` | The CSS class added to the current step the user is viewing
  * `[part='step-content']` | The element that wraps the contents of each step
  * `[part='step-button']` | The button of each step
- * `.active-step` | The CSS class added to the current step the user is viewing
+ * `[part='step-indicators']` | The element that wraps step indicators
+ * `[part='step-indicator']` | The step indicator element
+ * `[part='step-indicator'].active-step` | The CSS class added to the current step indicator the user is viewing
  *
  * How to provide styles of the steps:
  *  Create a `dom-module` element like the following example
@@ -24,7 +27,10 @@ import '@vaadin/vaadin-button';
  *  <template>
  *    <style>
  *      [part='step'] {
- *        background-color: #fff;
+ *        display: none;
+ *      }
+ *      [part='step'].active-step {
+ *        display: flex;
  *      }
  *      [part='step-content'] {
  *        text-transform: uppercase;
@@ -32,8 +38,15 @@ import '@vaadin/vaadin-button';
  *      [part='step-button'] {
  *        margin-top: 3em;
  *      }
- *      .active-step {
- *        display: flex;
+ *      [part='step-indicators'] {
+ *        margin: 1em 0.5em;
+ *      }
+ *      [part='step-indicator'] {
+ *				background-color: var(--lumo-shade-30pct);
+ *				border-radius: 0;
+ *      }
+ *      [part='step-indicator'].active-step {
+ *        background-color: var(--lumo-success-color);
  *      }
  *    </style>
  *  </template>
@@ -59,6 +72,28 @@ import '@vaadin/vaadin-button';
 class VcfOnboarding extends ElementMixin(ThemableMixin(GestureEventListeners(PolymerElement))) {
   static get template() {
     return html`
+      <style>
+        [part='step-indicators'] {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0.5em;
+        }
+        [part='step-indicator'] {
+          width: 8px;
+          height: 8px;
+          margin: 0 5px;
+          border-radius: 50%;
+          background-color: var(--lumo-shade-30pct);
+          display: inline-block;
+          transition: all 0.25s;
+          cursor: pointer;
+        }
+        [part='step-indicators'] .active-step {
+          background-color: var(--lumo-primary-color);
+          cursor: default;
+        }
+      </style>
       <vaadin-dialog id="onboarding-dialog" theme="full-screen-on-mobile" no-close-on-outside-click no-close-on-esc>
         <template>
           <div part="steps-container" on-track="handleTrack">
@@ -70,6 +105,16 @@ class VcfOnboarding extends ElementMixin(ThemableMixin(GestureEventListeners(Pol
                 >
               </div>
             </template>
+            <div part="step-indicators">
+              <template is="dom-repeat" items="[[steps]]">
+                <span
+                  part="step-indicator"
+                  on-click="updateStep"
+                  data-index="[[index]]"
+                  class$="[[_getStepClasses(index, activeStep)]]"
+                ></span>
+              </template>
+            </div>
           </div>
         </template>
       </vaadin-dialog>
@@ -81,7 +126,7 @@ class VcfOnboarding extends ElementMixin(ThemableMixin(GestureEventListeners(Pol
   }
 
   static get version() {
-    return '0.2.1';
+    return '0.3.0';
   }
 
   static get properties() {
@@ -131,6 +176,10 @@ class VcfOnboarding extends ElementMixin(ThemableMixin(GestureEventListeners(Pol
     } else {
       this.closeDialog();
     }
+  }
+
+  updateStep(e) {
+    this.activeStep = e.target.dataIndex;
   }
 
   openDialog() {
