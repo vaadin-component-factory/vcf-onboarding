@@ -1,6 +1,6 @@
 {
   "name": "@vaadin-component-factory/vcf-onboarding",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Vaadin Component Factory Onboarding",
   "main": "theme/lumo/vcf-onboarding.js",
   "author": "Vaadin Ltd",
@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@polymer/polymer": "^3.0.0",
-    "@vaadin/vaadin-button": "^2.2.1",
+    "@vaadin/vaadin-button": "2.2.0",
     "@vaadin/vaadin-dialog": "^2.2.1",
     "@vaadin/vaadin-element-mixin": "^2.1.3",
     "@vaadin/vaadin-lumo-styles": "^1.5.0",

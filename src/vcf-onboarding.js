@@ -81,7 +81,7 @@ class VcfOnboarding extends ElementMixin(ThemableMixin(GestureEventListeners(Pol
   }
 
   static get version() {
-    return '0.2.0';
+    return '0.2.1';
   }
 
   static get properties() {
