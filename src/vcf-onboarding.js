@@ -10,7 +10,7 @@ import '@vaadin/vaadin-button';
  *
  * Selector | Description
  * ----------------|----------------
- * `[part='step-container']` | The element that wraps all the steps
+ * `[part='steps-container']` | The element that wraps all the steps
  * `[part='step']` | The element that wraps the contents and the button of each step
  * `[part='step'].active-step` | The CSS class added to the current step the user is viewing
  * `[part='step-content']` | The element that wraps the contents of each step
@@ -26,27 +26,29 @@ import '@vaadin/vaadin-button';
  * <dom-module id="my-onboarding-styles" theme-for="vcf-onboarding">
  *  <template>
  *    <style>
+ *      [part='steps-container'] {
+ *
+ *      }
  *      [part='step'] {
- *        display: none;
+ *
  *      }
  *      [part='step'].active-step {
- *        display: flex;
+ *
  *      }
  *      [part='step-content'] {
- *        text-transform: uppercase;
+ *
  *      }
  *      [part='step-button'] {
- *        margin-top: 3em;
+ *
  *      }
  *      [part='step-indicators'] {
- *        margin: 1em 0.5em;
+ *
  *      }
  *      [part='step-indicator'] {
- *				background-color: var(--lumo-shade-30pct);
- *				border-radius: 0;
+ *
  *      }
  *      [part='step-indicator'].active-step {
- *        background-color: var(--lumo-success-color);
+ *
  *      }
  *    </style>
  *  </template>
@@ -73,11 +75,20 @@ class VcfOnboarding extends ElementMixin(ThemableMixin(GestureEventListeners(Pol
   static get template() {
     return html`
       <style>
+        [part='step'] {
+          display: none;
+        }
+        [part='step'].active-step {
+          display: block;
+        }
+        [part='step-button'] {
+          width: 100%;
+          margin: var(--lumo-space-l) 0;
+        }
         [part='step-indicators'] {
           display: flex;
           align-items: center;
           justify-content: center;
-          margin: 0.5em;
         }
         [part='step-indicator'] {
           width: 8px;
@@ -100,7 +111,7 @@ class VcfOnboarding extends ElementMixin(ThemableMixin(GestureEventListeners(Pol
             <template is="dom-repeat" items="[[steps]]">
               <div part="step" class$="[[_getStepClasses(index, activeStep)]]">
                 <div part="step-content" inner-h-t-m-l="[[item.innerHTML]]"></div>
-                <vaadin-button part="step-button" theme="success primary" on-click="nextStep"
+                <vaadin-button part="step-button" theme="primary" on-click="nextStep"
                   >[[_getButtonText(item)]]</vaadin-button
                 >
               </div>
@@ -126,7 +137,7 @@ class VcfOnboarding extends ElementMixin(ThemableMixin(GestureEventListeners(Pol
   }
 
   static get version() {
-    return '0.3.0';
+    return '0.3.1';
   }
 
   static get properties() {

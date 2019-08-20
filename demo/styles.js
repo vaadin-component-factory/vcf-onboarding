@@ -5,34 +5,47 @@ const template = html`
   <dom-module id="my-onboarding-styles" theme-for="vcf-onboarding">
     <template>
       <style>
+				[part='steps-container'] {
+					margin: -10px;
+				}
         [part='step'] {
+          display: none;
+        }
+        [part='step'].active-step {
+          display: block;
+        }
+        [part='step-content'] {
           min-width: 300px;
           width: 100%;
-          height: 70vh;
-          display: none;
+          height: 50vh;
+          display: flex;
           justify-content: center;
           align-items: center;
           flex-direction: column;
           background-color: #fff;
         }
-        [part='step'].active-step {
-          display: flex;
-				}
-        [part='step-content'] {
-          text-transform: uppercase;
-        }
         [part='step-button'] {
-          margin-top: 3em;
+          width: 100%;
+          margin: 0.75rem 0;
         }
-				[part='step-indicators'] {
-          margin: 1em 0.5em;
+        [part='step-indicators'] {
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         [part='step-indicator'] {
-					background-color: var(--lumo-shade-30pct);
-					border-radius: 0;
+          width: 8px;
+          height: 8px;
+          margin: 0 5px;
+          border-radius: 50%;
+          background-color: var(--lumo-shade-30pct);
+          display: inline-block;
+          transition: all 0.25s;
+          cursor: pointer;
         }
-        [part='step-indicator'].active-step {
-          background-color: var(--lumo-success-color);
+        [part='step-indicators'] .active-step {
+          background-color: var(--lumo-primary-color);
+          cursor: default;
         }
       </style>
     </template>

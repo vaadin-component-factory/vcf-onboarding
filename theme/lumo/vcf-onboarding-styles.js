@@ -1,17 +1,14 @@
-import { html } from '@polymer/polymer/polymer-element.js';
 import '@vaadin/vaadin-lumo-styles/color';
+import '@vaadin/vaadin-lumo-styles/spacing';
 
-const template = html`
-  <dom-module id="my-dialog-overlay-styles" theme-for="vaadin-dialog-overlay">
+const theme = document.createElement('dom-module');
+theme.id = 'vcf-onboarding-lumo';
+theme.setAttribute('theme-for', 'vcf-onboarding');
+theme.innerHTML = `
     <template>
       <style>
-        [part='content'] {
-          padding: 0;
-          height: 100%;
-        }
+        :host {}
       </style>
     </template>
-  </dom-module>
-`;
-
-document.head.appendChild(template.content);
+  `;
+theme.register(theme.id);
