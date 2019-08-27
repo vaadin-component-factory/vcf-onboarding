@@ -8,11 +8,77 @@ Install `vcf-onboarding`:
 npm i @vaadin-component-factory/vcf-onboarding --save
 ```
 
+## Usage
+
 Once installed, import it in your application:
 
 ```js
 import '@vaadin-component-factory/vcf-onboarding/vcf-onboarding.js';
 ```
+
+And use it:
+
+```html
+<vcf-onboarding>
+  <div onboarding-step button-text="Next Step">
+    <h1>First Step</h1>
+  </div>
+  <div onboarding-step button-text="Next Step">
+    <h1>Second Step</h1>
+  </div>
+  <div onboarding-step button-text="Finish!">
+    <h1>Third Step</h1>
+  </div>
+</vcf-onboarding>
+```
+
+Wrap the content of each step in an element with `onboarding-step` attribute and add the button text in `button-text` attribute of the element.
+
+### Styling
+
+The following selectors are available for styling:
+
+- `[part='steps-container']`: The element that wraps all the steps.
+- `[part='step']`: The element that wraps the contents and the button of each step.
+- `[part='step'].active-step`: The CSS class added to the current step the user is viewing.
+- `[part='step-content']`: The element that wraps the contents of each step.
+- `[part='step-button']`: The button of each step.
+- `[part='step-indicators']`: The element that wraps step indicators.
+- `[part='step-indicator']`: The step indicator element.
+- `[part='step-indicator'].active-step`: The CSS class added to the current step indicator the user is viewing.
+
+### How to provide styles of the content:
+
+Create a `dom-module` element like the following example and add your styles:
+
+```html
+<dom-module id="my-onboarding-styles" theme-for="vcf-onboarding">
+  <template>
+    <style>
+      [part='steps-container'] {
+      }
+      [part='step'] {
+      }
+      [part='step'].active-step {
+      }
+      [part='step-content'] {
+      }
+      [part='step-button'] {
+      }
+      [part='step-indicators'] {
+      }
+      [part='step-indicator'] {
+      }
+      [part='step-indicator'].active-step {
+      }
+    </style>
+  </template>
+</dom-module>
+```
+
+*Refer to [demos](#running-demo) for a real-world example.*
+
+**Note that after the user has gone through all the steps, the onboarding dialog will not show again in future visits.**
 
 ## Running demo
 
@@ -26,7 +92,7 @@ import '@vaadin-component-factory/vcf-onboarding/vcf-onboarding.js';
 
 ## Contributing
 
-  To contribute to the component, please read [the guideline](https://github.com/vaadin/vaadin-core/blob/master/CONTRIBUTING.md) first.
+To contribute to the component, please read [the guideline](https://github.com/vaadin/vaadin-core/blob/master/CONTRIBUTING.md) first.
 
 ## License
 
