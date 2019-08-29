@@ -40,12 +40,11 @@ The following selectors are available for styling:
 
 - `[part='steps-container']`: The element that wraps all the steps.
 - `[part='step']`: The element that wraps the contents and the button of each step.
-- `[part='step'].active-step`: The CSS class added to the current step the user is viewing.
 - `[part='step-content']`: The element that wraps the contents of each step.
+- `[part='onboarding-footer']`: The element that wraps the buttons and steps indicators.
 - `[part='step-button']`: The button of each step.
 - `[part='step-indicators']`: The element that wraps step indicators.
 - `[part='step-indicator']`: The step indicator element.
-- `[part='step-indicator'].active-step`: The CSS class added to the current step indicator the user is viewing.
 
 ### How to provide styles of the content:
 
@@ -59,17 +58,21 @@ Create a `dom-module` element like the following example and add your styles:
       }
       [part='step'] {
       }
-      [part='step'].active-step {
+      [part='step'].active {
       }
       [part='step-content'] {
       }
+      [part='onboarding-footer'] {
+      }
       [part='step-button'] {
+      }
+      [part='step-button'].active {
       }
       [part='step-indicators'] {
       }
       [part='step-indicator'] {
       }
-      [part='step-indicator'].active-step {
+      [part='step-indicator'].active {
       }
     </style>
   </template>

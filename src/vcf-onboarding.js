@@ -12,12 +12,11 @@ import '@vaadin/vaadin-button';
  * ----------------|----------------
  * `[part='steps-container']` | The element that wraps all the steps
  * `[part='step']` | The element that wraps the contents and the button of each step
- * `[part='step'].active-step` | The CSS class added to the current step the user is viewing
  * `[part='step-content']` | The element that wraps the contents of each step
+ * `[part='onboarding-footer']` | The element that wraps the buttons and steps indicators
  * `[part='step-button']` | The button of each step
  * `[part='step-indicators']` | The element that wraps step indicators
  * `[part='step-indicator']` | The step indicator element
- * `[part='step-indicator'].active-step` | The CSS class added to the current step indicator the user is viewing
  *
  * How to provide styles of the steps:
  *  Create a `dom-module` element like the following example
@@ -32,13 +31,19 @@ import '@vaadin/vaadin-button';
  *      [part='step'] {
  *
  *      }
- *      [part='step'].active-step {
+ *      [part='step'].active {
  *
  *      }
  *      [part='step-content'] {
  *
  *      }
+ *      [part='onboarding-footer'] {
+ *
+ *      }
  *      [part='step-button'] {
+ *
+ *      }
+ *      [part='step-button'].active {
  *
  *      }
  *      [part='step-indicators'] {
@@ -47,7 +52,7 @@ import '@vaadin/vaadin-button';
  *      [part='step-indicator'] {
  *
  *      }
- *      [part='step-indicator'].active-step {
+ *      [part='step-indicator'].active {
  *
  *      }
  *    </style>
@@ -78,12 +83,16 @@ class VcfOnboarding extends ElementMixin(ThemableMixin(GestureEventListeners(Pol
         [part='step'] {
           display: none;
         }
-        [part='step'].active-step {
+        [part='step'].active {
           display: block;
         }
         [part='step-button'] {
           width: 100%;
           margin: var(--lumo-space-l) 0;
+          display: none;
+        }
+        [part='step-button'].active {
+          display: block;
         }
         [part='step-indicators'] {
           display: flex;
@@ -100,31 +109,40 @@ class VcfOnboarding extends ElementMixin(ThemableMixin(GestureEventListeners(Pol
           transition: all 0.25s;
           cursor: pointer;
         }
-        [part='step-indicators'] .active-step {
+        [part='step-indicators'] .active {
           background-color: var(--lumo-primary-color);
           cursor: default;
         }
       </style>
       <vaadin-dialog id="onboarding-dialog" theme="full-screen-on-mobile" no-close-on-outside-click no-close-on-esc>
         <template>
-          <div part="steps-container" on-track="handleTrack">
+          <div part="steps-container" class$="step-[[activeStep]]-active" on-track="handleTrack">
             <template is="dom-repeat" items="[[steps]]">
-              <div part="step" class$="[[_getStepClasses(index, activeStep)]]">
+              <div part="step" class$="[[_getActiveClass(index, activeStep)]]">
                 <div part="step-content" inner-h-t-m-l="[[item.innerHTML]]"></div>
-                <vaadin-button part="step-button" theme="primary" on-click="nextStep"
-                  >[[_getButtonText(item)]]</vaadin-button
-                >
               </div>
             </template>
-            <div part="step-indicators">
+            <div part="onboarding-footer">
               <template is="dom-repeat" items="[[steps]]">
-                <span
-                  part="step-indicator"
-                  on-click="updateStep"
-                  data-index="[[index]]"
-                  class$="[[_getStepClasses(index, activeStep)]]"
-                ></span>
+                <vaadin-button
+                  part="step-button"
+                  class$="[[_getActiveClass(index, activeStep)]]"
+                  tab-index$="[[_getTabIndex(index, activeStep)]]"
+                  theme="primary"
+                  on-click="nextStep"
+                  >[[_getButtonText(item)]]</vaadin-button
+                >
               </template>
+              <div part="step-indicators">
+                <template is="dom-repeat" items="[[steps]]">
+                  <span
+                    part="step-indicator"
+                    class$="[[_getActiveClass(index, activeStep)]]"
+                    on-click="updateStep"
+                    data-index="[[index]]"
+                  ></span>
+                </template>
+              </div>
             </div>
           </div>
         </template>
@@ -137,7 +155,7 @@ class VcfOnboarding extends ElementMixin(ThemableMixin(GestureEventListeners(Pol
   }
 
   static get version() {
-    return '0.3.2';
+    return '0.4.0';
   }
 
   static get properties() {
@@ -170,11 +188,18 @@ class VcfOnboarding extends ElementMixin(ThemableMixin(GestureEventListeners(Pol
     this.innerHTML = '';
   }
 
-  _getStepClasses(i, activeStep) {
+  _getActiveClass(i, activeStep) {
     if (i === activeStep) {
-      return 'active-step';
+      return 'active';
     }
     return '';
+  }
+
+  _getTabIndex(i, activeStep) {
+    if (i === activeStep) {
+      return 0;
+    }
+    return -1;
   }
 
   _getButtonText(step) {

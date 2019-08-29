@@ -11,7 +11,7 @@ const template = html`
         [part='step'] {
           display: none;
         }
-        [part='step'].active-step {
+        [part='step'].active {
           display: block;
         }
         [part='step-content'] {
@@ -27,6 +27,10 @@ const template = html`
         [part='step-button'] {
           width: 100%;
           margin: 0.75rem 0;
+          display: none;
+        }
+        [part='step-button'].active {
+          display: block;
         }
         [part='step-indicators'] {
           display: flex;
@@ -43,7 +47,7 @@ const template = html`
           transition: all 0.25s;
           cursor: pointer;
         }
-        [part='step-indicators'] .active-step {
+        [part='step-indicators'] .active {
           background-color: var(--lumo-primary-color);
           cursor: default;
         }
