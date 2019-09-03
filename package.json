@@ -1,6 +1,6 @@
 {
   "name": "@vaadin-component-factory/vcf-onboarding",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Vaadin Component Factory Onboarding",
   "main": "theme/lumo/vcf-onboarding.js",
   "author": "Vaadin Ltd",
