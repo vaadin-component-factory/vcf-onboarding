@@ -2,7 +2,7 @@
 
 ## Demo
 
-https://vcf-pwa-install-dialog.netlify.com/
+https://vcf-onboarding.netlify.com/
 
 ## Installation
 
@@ -83,7 +83,7 @@ Create a `dom-module` element like the following example and add your styles:
 </dom-module>
 ```
 
-_Refer to [demos](https://vcf-pwa-install-dialog.netlify.com/) for a real-world example._
+_Refer to [demos](https://vcf-onboarding.netlify.com/) for a real-world example._
 
 **Note that after the user has gone through all the steps, the onboarding dialog will not show again in future visits.**
 
