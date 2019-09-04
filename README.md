@@ -17,7 +17,7 @@ npm i @vaadin-component-factory/vcf-onboarding --save
 Once installed, import it in your application:
 
 ```js
-import '@vaadin-component-factory/vcf-onboarding/vcf-onboarding.js';
+import '@vaadin-component-factory/vcf-onboarding';
 ```
 
 And use it:
